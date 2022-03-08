@@ -121,17 +121,6 @@ RUN /bin/bash -c ". ~/.nvm/nvm.sh && \
 # Handle yarn for any `nvm install` in the future
 RUN echo "yarn@${VERSION_YARN}" > /root/.nvm/default-packages
 
-## Install Ruby 2.4.x and 2.6.x
-## https://github.com/rvm/rvm/issues/5096 | https://rvm.io/rvm/security#install-our-keys - The old keyserver is no longer available
-RUN curl -sSL https://rvm.io/mpapis.asc | gpg --import - && curl -sSL https://rvm.io/pkuczynski.asc | gpg --import - && \
-    curl -sL https://get.rvm.io | bash -s -- --with-gems="bundler"
-
-ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-RUN /bin/bash --login -c "\
-    rvm install $VERSION_RUBY_2_4 && rvm use $VERSION_RUBY_2_4 && gem install bundler -v $VERSION_BUNDLER && gem install jekyll && \
-    rvm install $VERSION_RUBY_2_6 && rvm use $VERSION_RUBY_2_6 && gem install bundler -v $VERSION_BUNDLER && gem install -N jekyll && \
-    rvm cleanup all"
-
 ## Install awscli
 RUN /bin/bash -c "pip3.8 install awscli && rm -rf /var/cache/apk/*"
 RUN /bin/bash -c "pip3.9 install awscli && rm -rf /var/cache/apk/*"
@@ -158,10 +147,6 @@ RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_17}  && \
 
 ## Environment Setup
 RUN echo export PATH="\
-    /usr/local/rvm/gems/ruby-${VERSION_RUBY_DEFAULT}/bin:\
-    /usr/local/rvm/gems/ruby-${VERSION_RUBY_DEFAULT}@global/bin:\
-    /usr/local/rvm/rubies/ruby-${VERSION_RUBY_DEFAULT}/bin:\
-    /usr/local/rvm/bin:\
     /root/.nvm/versions/node/${VERSION_NODE_DEFAULT}/bin:\
     $(python3 -m site --user-base)/bin:\
     $(python3.8 -m site --user-base)/bin:\
