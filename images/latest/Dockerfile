@@ -110,11 +110,6 @@ RUN make altinstall
 ## Install Node
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 RUN /bin/bash -c ". ~/.nvm/nvm.sh && \
-    nvm install $VERSION_NODE_8 && nvm use $VERSION_NODE_8 && \
-    nvm install $VERSION_NODE_10 && nvm use $VERSION_NODE_10 && \
-    npm install -g yarn@${VERSION_YARN} sm grunt-cli bower vuepress gatsby-cli && \
-    nvm install $VERSION_NODE_12 && nvm use $VERSION_NODE_12 && \
-    npm install -g yarn@${VERSION_YARN} sm grunt-cli bower vuepress gatsby-cli && \
     nvm install $VERSION_NODE_14 && nvm use $VERSION_NODE_14 && \
     npm install -g yarn@${VERSION_YARN} sm grunt-cli bower vuepress gatsby-cli && \
     nvm install $VERSION_NODE_16 && nvm use $VERSION_NODE_16 && chown -R root:root /root/.nvm &&  \
@@ -151,15 +146,6 @@ RUN /bin/bash -c ". ~/.nvm/nvm.sh && \
     npm install -g --unsafe-perm=true --allow-root cypress"
 
 ## Install AWS Amplify CLI for all node versions
-RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_8} && \
-    npm config set user 0 && npm config set unsafe-perm true && \
-    npm install -g @aws-amplify/cli@${VERSION_AMPLIFY}"
-RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_10} && \
-    npm config set user 0 && npm config set unsafe-perm true && \
-    npm install -g @aws-amplify/cli@${VERSION_AMPLIFY}"
-RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_12} && \
-    npm config set user 0 && npm config set unsafe-perm true && \
-    npm install -g @aws-amplify/cli@${VERSION_AMPLIFY}"
 RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_14} && \
     npm config set user 0 && npm config set unsafe-perm true && \
     npm install -g @aws-amplify/cli@${VERSION_AMPLIFY}"
