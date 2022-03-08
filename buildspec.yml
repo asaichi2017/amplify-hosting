@@ -5,13 +5,14 @@ phases:
 #      docker: 19
   pre_build:
     commands:
-      # ECRのリポジトリにログイン
-      - $(aws ecr get-login --no-include-email --region ${AWS_REGION})
       ##### 環境変数の定義 ###################################
       - ROOT_DIR=`pwd`
-      - REPOSITORY_URI=public.ecr.aws/g2o5x8c8/draken/buildimage
+      - REPOSITORY_URI=public.ecr.aws/g2o5x8c8
+      - REPOSITORY_PATH=${REPOSITORY_URI}/draken/buildimage
+      # ECRのリポジトリにログイン
+      - aws ecr-public  get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${REPOSITORY_URI}
   build:
     commands:
       - cd images
-      - docker build -t ${REPOSITORY_URI}:latest -f latest/Dockerfile .
+      - docker build -t ${REPOSITORY_PATH}:latest -f latest/Dockerfile .
       - docker push ${REPOSITORY_URI}:latest
