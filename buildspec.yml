@@ -15,4 +15,4 @@ phases:
     commands:
       - cd images
       - docker build -t ${REPOSITORY_PATH}:latest -f latest/Dockerfile .
-      - docker push ${REPOSITORY_URI}:latest
+      - docker push ${REPOSITORY_PATH}:latest
