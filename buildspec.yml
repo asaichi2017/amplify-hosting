@@ -6,7 +6,7 @@ phases:
   pre_build:
     commands:
       # ECRのリポジトリにログイン
-      - $(aws ecr get-login --no-include-email --region ${AWS_REGION})
+      - $(aws ecr get-login --no-include-email --region us-east-1
       ##### 環境変数の定義 ###################################
       - ROOT_DIR=`pwd`
       - REPOSITORY_URI=public.ecr.aws/g2o5x8c8/draken/buildimage
