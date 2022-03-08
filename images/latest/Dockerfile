@@ -1,4 +1,4 @@
-FROM amazonlinux:2
+FROM public.ecr.aws/docker/library/amazonlinux:2
 
 # https://docs.docker.com/engine/reference/builder/#maintainer-deprecated
 LABEL maintainer="Amazon AWS"
