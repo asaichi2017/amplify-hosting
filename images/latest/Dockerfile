@@ -19,7 +19,7 @@ ENV LC_ALL en_US.UTF-8
 RUN touch ~/.bashrc
 RUN yum -y update && \
     yum -y install \
-    alsa-lib-devel \
+#    alsa-lib-devel \
     autoconf \
     automake \
     bzip2 \
@@ -30,21 +30,21 @@ RUN yum -y update && \
     fontconfig \
     git \
     gcc-c++ \
-    GConf2-devel \
-    gtk2-devel \
-    gtk3-devel \
+#    GConf2-devel \
+#    gtk2-devel \
+#    gtk3-devel \
     libnotify-devel \
     libpng \
     libpng-devel \
     libffi-devel \
     libtool \
-    libX11 \
-    libXext \
+#    libX11 \
+#    libXext \
     libxml2 \
     libxml2-devel \
     libXScrnSaver \
-    libxslt \
-    libxslt-devel \
+#    libxslt \
+#    libxslt-devel \
     libyaml \
     libyaml-devel \
     make \
@@ -53,8 +53,8 @@ RUN yum -y update && \
     openssh-clients \
     patch \
     procps \
-    python3 \
-    python3-devel \
+#    python3 \
+#    python3-devel \
     readline-devel \
     sqlite-devel \
     tar \
@@ -62,7 +62,7 @@ RUN yum -y update && \
     unzip \
     wget \
     which \
-    xorg-x11-server-Xvfb \
+#    xorg-x11-server-Xvfb \
     zip \
     zlib \
     zlib-devel \
@@ -140,7 +140,7 @@ RUN /bin/bash -c ". ~/.nvm/nvm.sh && nvm use ${VERSION_NODE_16} && \
 # Environment Setup
 RUN echo export PATH="\
 /root/.nvm/versions/node/${VERSION_NODE_DEFAULT}/bin:\
-$(python3 -m site --user-base)/bin:\
+#$(python3 -m site --user-base)/bin:\
 #$(python3.9 -m site --user-base)/bin:\
 $PATH" >> ~/.bashrc && \
     echo "nvm use ${VERSION_NODE_DEFAULT} 1> /dev/null" >> ~/.bashrc
