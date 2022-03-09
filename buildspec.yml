@@ -1,18 +1,18 @@
 version: 0.2
 phases:
-#  install:
-#    runtime-versions:
-#      docker: 19
   pre_build:
     commands:
       ##### 環境変数の定義 ###################################
+      - set
+      - BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
       - ROOT_DIR=`pwd`
       - REPOSITORY_URI=public.ecr.aws/g2o5x8c8
       - REPOSITORY_PATH=${REPOSITORY_URI}/draken/buildimage
       # ECRのリポジトリにログイン
+      # publicリポジトリはprivateとは別コマンド。
       - aws ecr-public  get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${REPOSITORY_URI}
   build:
     commands:
       - cd images
-      - docker build -t ${REPOSITORY_PATH}:latest -f latest/Dockerfile .
-      - docker push ${REPOSITORY_PATH}:latest
+#      - docker build -t ${REPOSITORY_PATH}:latest -f latest/Dockerfile .
+#      - docker push ${REPOSITORY_PATH}:latest
