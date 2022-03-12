@@ -3,7 +3,7 @@ phases:
   pre_build:
     commands:
       ##### 環境変数の定義 ###################################
-      - IMAGE_VERSION=1.0.0
+      - IMAGE_VERSION=7.6.23-1
       - REPOSITORY_URI=public.ecr.aws/g2o5x8c8
       - REPOSITORY_PATH=${REPOSITORY_URI}/draken/buildimage
       # ECRのリポジトリにログイン
